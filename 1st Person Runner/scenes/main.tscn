@@ -1,0 +1,61 @@
+[gd_scene load_steps=10 format=3 uid="uid://sji8to0jmgeo"]
+
+[ext_resource type="Texture2D" uid="uid://c6l1ah48ip7bo" path="res://FPS-controller-assets-main/assets/textures/dev/grids/Dark/texture_07.png" id="1_a7hwv"]
+[ext_resource type="PackedScene" uid="uid://bu2pxs2gc7w1q" path="res://scenes/player.tscn" id="2_g7w0e"]
+[ext_resource type="Texture2D" uid="uid://dm2cnbf8vph5g" path="res://FPS-controller-assets-main/assets/textures/dev/grids/Orange/texture_05.png" id="2_jre8s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pqjrr"]
+albedo_texture = ExtResource("1_a7hwv")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j3iuo"]
+albedo_texture = ExtResource("2_jre8s")
+uv1_triplanar = true
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0tqqx"]
+load_path = "res://.godot/imported/kloofendal_48d_partly_cloudy_puresky_2k.hdr-cdbf64b2f9004f719d5b3cf98524a082.bptc.ctex"
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_n7yes"]
+panorama = SubResource("CompressedTexture2D_0tqqx")
+
+[sub_resource type="Sky" id="Sky_5i6u6"]
+sky_material = SubResource("PanoramaSkyMaterial_n7yes")
+
+[sub_resource type="Environment" id="Environment_uv2jv"]
+background_mode = 2
+sky = SubResource("Sky_5i6u6")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="world" type="Node3D"]
+
+[node name="map" type="Node3D" parent="."]
+
+[node name="floor" type="CSGBox3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+material_override = SubResource("StandardMaterial3D_pqjrr")
+use_collision = true
+size = Vector3(1000, 1, 1000)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 1.94786, 0)
+material_override = SubResource("StandardMaterial3D_j3iuo")
+use_collision = true
+size = Vector3(5, 1, 10)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0.519897, 8)
+material_override = SubResource("StandardMaterial3D_j3iuo")
+use_collision = true
+size = Vector3(1.5, 1.5, 1.5)
+
+[node name="environment" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="environment"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="environment"]
+environment = SubResource("Environment_uv2jv")
+
+[node name="player" parent="." instance=ExtResource("2_g7w0e")]
