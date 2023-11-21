@@ -11,10 +11,14 @@ script = ExtResource("1_v2m3s")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_5tnrh")
 
-[node name="head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
-
-[node name="Camera3D" type="Camera3D" parent="head"]
-
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(0, 2, 0)
+
+[node name="neck" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="head" type="Node3D" parent="neck"]
+
+[node name="eyes" type="Node3D" parent="neck/head"]
+
+[node name="Camera3D" type="Camera3D" parent="neck/head/eyes"]

@@ -44,10 +44,10 @@ use_collision = true
 size = Vector3(5, 1, 10)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="map"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0.519897, 8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0.519897, 9.10283)
 material_override = SubResource("StandardMaterial3D_j3iuo")
 use_collision = true
-size = Vector3(1.5, 1.5, 1.5)
+size = Vector3(5, 1.5, 5)
 
 [node name="environment" type="Node3D" parent="."]
 
